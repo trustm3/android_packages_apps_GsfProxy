@@ -27,8 +27,8 @@ gsfproxy_apk   := build/outputs/apk/services-framework-proxy-release-unsigned.ap
 
 $(gsfproxy_root)/$(gsfproxy_dir)/$(gsfproxy_apk):
 	rm -Rf $(gsfproxy_build)
-	mkdir -p $(gsfproxy_out)
-	ln -s $(gsfproxy_out) $(gsfproxy_build)
+	mkdir -p $(ANDROID_BUILD_TOP)/$(gsfproxy_out)
+	ln -s $(ANDROID_BUILD_TOP)/$(gsfproxy_out) $(gsfproxy_build)
 	echo "sdk.dir=$(ANDROID_HOME)" > $(gsfproxy_root)/local.properties
 	cd $(gsfproxy_root) && git submodule update --recursive --init
 	cd $(gsfproxy_root)/$(gsfproxy_dir) && JAVA_TOOL_OPTIONS="$(JAVA_TOOL_OPTIONS) -Dfile.encoding=UTF8" ../gradlew assembleRelease
